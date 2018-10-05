@@ -1,0 +1,6 @@
+<header>{{category}}</header>
+{{#each componentList as |component|}}
+  <li>{{#link-to "components" component.id}}{{component.name}}{{/link-to}}</li>
+{{else}}
+  <li>No components found</li>
+{{/each}}

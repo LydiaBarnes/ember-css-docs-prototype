@@ -1,0 +1,62 @@
+/* variables.scss */
+
+// Variables related to the demo site
+
+
+// Colors
+
+$branding-blue:                         #00c0f2;
+
+
+// Fonts
+
+$feature-font-family:                   $font-family-default;
+
+
+// Content
+
+$global-content-padding:                1em;
+$global-content-padding-lg:             $global-content-padding * 2;
+$global-content-padding-sm:             $global-content-padding / 2;
+$global-content-padding-xs:             $global-content-padding / 4;
+
+$global-content-spacing:                $global-content-padding-lg;
+$content-width:                         1200px;
+
+// Sidebar
+
+$list-spacing:                          0.2em;
+
+
+// Header
+
+$header-height:                         40px;
+$header-bg-color:                       $med-grey;
+
+
+// Main site nav
+
+$navigation-link-color-active:          $link-hover-color;
+$navigation-letter-spacing:             1.2px;
+$navigation-font-size:                  $font-size-small;
+
+$mobile-nav-icon-color:                 $white;
+$mobile-nav-bg-color:                   $grey;
+$mobile-nav-link-color:                 $header-bg-color;
+
+
+// Demo
+
+$demo-box-size:                         100px;
+
+$codeblock-bg-color:                    lighten($light-grey, 4%);
+$codeblock-border-color:                $light-grey;
+$codeblock-border-size:                 5px;
+
+$ui-example-border-color:               lighten($active-blue, 40%);
+
+// Media Queries
+$media-large:                           $content-width;
+$media-medium:                          768px;
+$media-small:                           480px;
+$media-xsmall:                          320px;

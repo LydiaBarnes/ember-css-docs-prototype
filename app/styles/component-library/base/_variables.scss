@@ -1,0 +1,123 @@
+// Small set of sample variables you might have in a component library.
+
+//
+// Color
+// -----------------------------------------------------------------------------
+
+// Grays
+// -------------------------
+$black:                                 #000000;
+$dark-grey:                             #333333;
+$grey:                                  #b3b3b3;
+$med-grey:                              #e6e6e6;
+$light-grey:                            #eeeeee;
+$white:                                 #ffffff;
+
+// Status Colors
+// -------------------------
+$positive-green:                        #168a38;
+$caution-yellow:                        #e5b92a;
+$error-red:                             #ea2400;
+
+// Accent colors
+// -------------------------
+$active-blue:                           #227ecb;
+
+// Text
+// -------------------------
+$text-color:                            $dark-grey;
+
+// Links
+// -------------------------
+$link-color:                            $grey;
+$link-hover-color:                      darken($link-color, 25%);
+
+
+
+//
+// Typography
+// -----------------------------------------------------------------------------
+
+// Font Family
+// -------------------------
+$font-family-default:                   'Helvetica Neue', 'Helvetica', Arial, sans-serif;
+$font-family-monospace:                 Menlo, Monaco, Consolas, 'Courier New', monospace;
+
+// Font Sizes
+// -------------------------
+$font-size-regular:                     1rem; //~16px
+$font-size-small:                       0.8rem;
+$font-size-large:                       1.2rem;
+
+$font-size-h1:                          1.4rem;
+$font-size-h2:                          1.2rem;
+
+// Font Weights
+// -------------------------
+$font-thin:                             100;
+$font-extra-light:                      200;
+$font-light:                            300;
+$font-normal:                           400;
+$font-medium:                           500;
+$font-semi-bold:                        600;
+$font-bold:                             700;
+$font-extra-bold:                       800;
+$font-heavy:                            900;
+
+
+//
+// Borders
+// -----------------------------------------------------------------------------
+$global-border-color:                   $med-grey;
+$global-border-style:                   1px solid $global-border-color;
+$global-border-radius:                  2px;
+
+
+// Padding/Spacing
+// -----------------------------------------------------------------------------
+// 8pt spacing system
+
+$spacing-default:                       8px;
+$spacing-small:                         $spacing-default / 2;
+$spacing-double:                        $spacing-default * 2;
+$spacing-triple:                        $spacing-default * 3;
+$spacing-quadruple:                     $spacing-default * 4;
+// and so on...
+
+
+//
+// Iconography
+// -----------------------------------------------------------------------------
+$icon-size:                             14px;
+
+
+//
+// States
+// -----------------------------------------------------------------------------
+$state-success-text:                    $positive-green;
+$state-success-bg:                      lighten($positive-green, 60%);
+$state-success-border:                  $state-success-bg;
+
+$state-warning-text:                    darken($caution-yellow, 15%);
+$state-warning-bg:                      lighten($caution-yellow, 40%);
+$state-warning-border:                  $state-warning-bg;
+
+$state-error-text:                      $error-red;
+$state-error-bg:                        lighten($error-red, 50%);
+$state-error-border:                    $state-error-bg;
+
+
+//
+// Transitions
+// -----------------------------------------------------------------------------
+
+$global-transition-duration:            0.3s;
+
+//
+// Opacity
+// -----------------------------------------------------------------------------
+
+$disabled-opacity:                      0.2;
+// Used when hover style is fade to opacity.
+// Opacity for color change is not always a great idea, but this is just a demo :)
+$hover-opacity:                         0.6;

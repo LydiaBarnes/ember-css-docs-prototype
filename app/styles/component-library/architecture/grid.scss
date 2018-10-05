@@ -1,0 +1,111 @@
+/* grid.scss */
+
+
+//
+// @name Grid
+// @description A grid structure based on flex. This system is meant to be used
+// in generic formatting cases where we don't want to add flex mixins to existing elements.
+// A flex grid can be nested indefinitely,
+// and a div can be both a flex container AND a flex item.
+// The flex magic works only on a container's (using .grid-row or .grid-column,
+// or the flex-group mixin) direct children (.flex-item).
+// If a direct child to a flex container doesn't have a .flex-item class of
+// some sort, it will behave with defaults and maintain its natural width/height
+// (see flex documentation on the web for more).
+// Note that this system is very basic and will be fleshed out more.
+
+// Generic mixin to set up a flex container
+@mixin flex-group($direction: 'row') {
+  display: flex;
+  flex-direction: unquote($direction);
+}
+
+//
+// @section Rows
+// @description Use the .grid-row class to create a row of flex items. All direct children will automatically line up next to each other.
+//
+// @markup
+//   <div class="grid-row">
+//     <div class="demo-box"></div>
+//     <div class="demo-box"></div>
+//     <div class="demo-box"></div>
+//   </div>
+//
+
+// Direct children will align horizontally
+.grid-row {
+  @include flex-group();
+}
+
+//
+// @section Columns
+// @description Use the .grid-column class to create a column of flex items.
+// All direct children will automatically stack on top of each other.
+//
+// @markup
+//   <div class="grid-column">
+//     <div class="demo-box"></div>
+//     <div class="demo-box"></div>
+//     <div class="demo-box"></div>
+//   </div>
+//
+
+// Direct children will align vertically.
+// Note that this is different than a Bootstrap column
+.grid-column {
+  @include flex-group(column);
+}
+
+//
+// @section Items
+// @description For finer control over how the flex children should behave,
+// use the .grid-item-{#} classes. The number denotes how much space the item
+// should fill compared to other items. Currently we have classes for up to .grid-item-12.
+// Items without these classes will keep their natural size.
+//
+// @markup
+//   <p>Example Row with even items</p>
+//   <div class="grid-row">
+//     <div class="grid-item-1 demo-box"></div>
+//     <div class="grid-item-1 demo-box"></div>
+//     <div class="grid-item-1 demo-box"></div>
+//   </div>
+//   <p>Example Row with uneven items</p>
+//   <div class="grid-row">
+//     <div class="grid-item-1 demo-box"></div>
+//     <div class="grid-item-3 demo-box"></div>
+//     <div class="grid-item-2 demo-box"></div>
+//   </div>
+//
+
+// Generate flex items to be used when structured column widths are needed.
+// Warning: these have not all been tested yet
+$columns: 12;
+@for $i from 1 through $columns {
+  // Standard flex item
+  .grid-item-#{$i} {
+    flex: $i;
+  }
+
+  // Offset helpers
+  // Works by adding a pseudo element to act as another flex item.
+  // The naming is a bit confusing because the first number refers to the size
+  // you want the child to be in reference to the container, not the container
+  // itself which you are putting this class on. The container could have another
+  // .grid-item class on it. Note that in its current implementation, every child
+  // in the container will get the offset, so you might need extra wrappers.
+  @for $j from 1 through $columns - 1 {
+    &.grid-#{$i}-offset-#{$j} {
+      @include flex-group();
+
+      > * {
+        flex: $i;
+      }
+
+      &::after {
+        content: '';
+        flex: $j;
+      }
+    }
+  }
+}

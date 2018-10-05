@@ -1,0 +1,53 @@
+<header class="app-header">
+  <h1>{{#link-to "index"}}Ember Component Library Demo{{/link-to}}</h1>
+  <nav class="app-navigation">
+    <ul class="secondary-nav">
+      <li>{{#link-to "about"}}About{{/link-to}}</li>
+      <li>{{#link-to "getting-started"}}Getting Started{{/link-to}}</li>
+      <li>{{#link-to "best-practices"}}Best Practices{{/link-to}}</li>
+    </ul>
+  </nav>
+</header>
+
+<div class="content-container">
+  <nav class="app-sidebar">
+    <section class="ui-category">
+      {{component-chooser
+        components=model
+        category="base"
+      }}
+    </section>
+
+    <section class="ui-category">
+      {{component-chooser
+        components=model
+        category="elements"
+      }}
+    </section>
+
+    <section class="ui-category">
+      {{component-chooser
+        components=model
+        category="widgets"
+      }}
+    </section>
+
+    <section class="ui-category">
+      {{component-chooser
+        components=model
+        category="architecture"
+      }}
+    </section>
+  </nav>
+
+
+  <main class="content">
+    {{outlet}}
+  </main>
+
+</div>
+
+<footer class="app-footer">
+  <p>&copy; Fancy Component Library Name</p>
+</footer>
+

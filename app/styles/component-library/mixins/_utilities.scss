@@ -1,0 +1,48 @@
+//
+// Utility Mixins
+// -----------------------------------------------------------------------------
+
+// Clears content around a container
+@mixin clearfix() {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+
+// Adds space between a list of items
+// Inputs: $space: # in any unit, $direction: horizontal, vertical
+@mixin space-list-items($space, $direction: 'horizontal') {
+  @if $direction == 'vertical' {
+    $side: top;
+  } @else {
+    $side: left;
+  }
+
+  & + & {
+    margin-#{$side}: $space;
+  }
+}
+
+
+// Anchor an element with absolute positioning. We usually use this to snap to
+// a position, or as a cheat to make an element stretch to full width/height
+// (should be using less as a cheat in the future)
+// Inputs: top, right, bottom, left, all (quick way to set all to the same value).
+// By setting the coordinates to null by default, nothing will be affected unless
+// you change any of the values to something else.
+// This way we don't have to declare all of them.
+@mixin anchor-element($top: null, $right: null, $bottom: null, $left: null, $position: null) {
+  @if $position {
+    position: unquote($position);
+  } @else {
+    position: absolute;
+  }
+
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}

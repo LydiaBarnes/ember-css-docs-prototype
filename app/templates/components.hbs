@@ -1,0 +1,32 @@
+<header class="ui-header">
+  <h2>{{model.name}}</h2>
+  <p>{{model.description}}</p>
+  {{#if model.blocks}}
+    <div class="ui-nav">
+      Jump to:
+      {{#each model.blocks as |block|}}
+        <button class="button-link" {{action "jumpToSection" block.section}}>
+          {{block.section}}
+        </button>
+      {{/each}}
+    </div>
+  {{/if}}
+</header>
+{{#each model.blocks as |block|}}
+  <section class="ui-section" id={{dasherize block.section}}>
+    <h3>{{block.section}}</h3>
+    <p>{{block.description}}</p>
+
+    {{#ui-example
+      codeContent=block.markup.example
+    }}
+      {{#if block.state}}
+        <p>
+          {{#each block.state as |state|}}
+            <code>{{state.name}}</code> - {{state.description}}<br>
+          {{/each}}
+        </p>
+      {{/if}}
+    {{/ui-example}}
+  </section>
+{{/each}}

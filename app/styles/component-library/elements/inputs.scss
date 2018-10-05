@@ -1,0 +1,39 @@
+/* inputs.scss */
+
+//
+// @name Inputs
+// @description Different types of inputs.
+//
+
+// Variables
+// -----------------------------
+$input-padding-v:               $spacing-default;
+$input-padding-h:               $spacing-default;
+
+$input-error-border-color:      $error-red;
+
+// -----------------------------
+
+// @section Text Input
+// @description Plain text input. 
+//
+// @state .text-input - default
+// @state .is-invalid (:invalid) - invalid state
+//
+// @markup
+//   <input type="text" class="text-input" value="text input">
+//   <input type="text" class="text-input is-invalid" value="text input invalid">
+//
+
+// Scoped to a class so it doesn't pollute all text inputs globally.
+input[type='text'].text-input {
+  box-sizing: border-box;
+  padding: $input-padding-v $input-padding-h;
+  border: $global-border-style;
+
+  &:invalid,
+  &.is-invalid {
+    border-color: $input-error-border-color;
+    outline-color: $input-error-border-color;
+  }
+}

@@ -1,0 +1,122 @@
+/* alert.scss */
+
+//
+// @name Alert
+// @description Alert system used to communicate certain app states to the user.
+//
+
+// Variables
+// -----------------------------
+$alert-padding-v:                $spacing-double;
+$alert-padding-h:                $spacing-quadruple;
+$alert-width:                    60%; // of container width
+
+$alert-close-icon-size:          $icon-size;
+$alert-close-icon-font-size:     20px;
+$alert-close-hover-opacity:      $hover-opacity;
+
+$alert-success-bg:               $state-success-bg;
+$alert-success-text:             $state-success-text;
+$alert-success-border:           $state-success-border;
+
+$alert-warning-bg:               $state-warning-bg;
+$alert-warning-text:             $state-warning-text;
+$alert-warning-border:           $state-warning-border;
+
+$alert-error-bg:                 $state-error-bg;
+$alert-error-text:               $state-error-text;
+$alert-error-border:             $state-error-border;
+
+
+// Global Alert Container
+// -----------------------------
+// Container for global page alerts
+.global-alert-container {
+  @include anchor-element($spacing-double, 0, auto, 0, fixed);
+  // Random high z-index for demo.
+  // Note: In a real design system, you should have something more sophisticated to manage z-indexes
+  z-index: 1000;
+}
+
+// Alert Base Placeholder
+// -----------------------------
+%alert {
+  position: relative; // needed for the pos:abs close icon
+  margin: auto;
+  width: $alert-width;
+  padding: $alert-padding-v $alert-padding-h;
+  font-weight: $font-medium;
+  text-align: center;
+
+  // alerts next to each other should be spaced apart
+  & + & {
+    margin-top: $spacing-default;
+  }
+}
+
+// Alert Types Mixin
+// -----------------------------
+@mixin alert-type($background, $border, $text-color) {
+  background-color: $background;
+  border: 1px solid $border;
+  color: $text-color;
+}
+
+// -----------------------------
+
+// @section Alert Types
+// @description Alert system used to communicate certain app states to the user.
+//
+// @state .alert-success - Green bar to be triggered when an action is successful
+// @state .alert-warning - Yellow bar to be triggered when an action is unsuccessful, or the user tries an action that is not allowed
+// @state .alert-error -   Red bar to be triggered when something goes wrong in the app, we should never purposefully trigger a redbar
+//
+// @markup
+//   <div class="alert-success">Your action was successful!</div>
+//   <div class="alert-success">Your action was successful! (dismissable)
+//    <a href="#" class="alert-close">×</a>
+//   </div>
+//   <div class="alert-warning">Your action was unsuccessful.</div>
+//   <div class="alert-warning">Your action was unsuccessful. (dismissable)
+//    <a href="#" class="alert-close">×</a>
+//   </div>
+//   <div class="alert-error">Something went wrong, please reload.</div>
+//   <div class="alert-error">Something went wrong, please reload. (dismissable)
+//    <a href="#" class="alert-close">×</a>
+//   </div>
+//
+
+.alert-success {
+  @extend %alert; 
+  @include alert-type($alert-success-bg, $alert-success-border, $alert-success-text);
+}
+
+.alert-warning {
+  @extend %alert;
+  @include alert-type($alert-warning-bg, $alert-warning-border, $alert-warning-text);
+}
+
+.alert-error {
+  @extend %alert;
+  @include alert-type($alert-error-bg, $alert-error-border, $alert-error-text);
+}
+
+// Most alerts will be one liners, so this style makes the icon
+// appear vertically centered in the bar. If it is more than one line,
+// the icon will be in the top right corner.
+.alert-close {
+  @include anchor-element($alert-padding-v, $alert-padding-h / 2);
+  width: $alert-close-icon-size;
+  height: $alert-close-icon-size;
+  color: inherit;
+  transition: opacity $global-transition-duration ease-in-out;
+  // This font stuff is needed bc I used a text char as the close icon instead
+  // of a real icon. Just a demo. :)
+  line-height: $alert-close-icon-size;
+  font-size: $alert-close-icon-font-size;
+  font-weight: $font-bold;
+
+  &:hover {
+    opacity: $alert-close-hover-opacity;
+  }
+}

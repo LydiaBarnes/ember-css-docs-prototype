@@ -1,0 +1,247 @@
+/* layout.scss */
+
+// Target the initial outer app container
+// Eventually would like to instead to add a class to this (if in a non-hacky way)
+body > .ember-view {
+  @include flex-group(column); // group: header, content-container, footer
+  min-height: 100%;
+}
+
+
+// Header / site nav / footer
+
+.app-header,
+.app-footer {
+  @include flex-group;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: $header-bg-color;
+  padding: 0 $global-content-padding;
+}
+
+.app-header {
+  height: $header-height;
+
+  h1 {
+    flex: 0 0 auto;
+    margin: 0;
+    font-size: $font-size-h2;
+  }
+
+  img {
+    max-height: 100%;
+    vertical-align: middle;
+  }
+}
+
+.app-navigation ul {
+  @include flex-group;
+  justify-content: space-between; // will only work if there is a width on the container
+
+  li {
+    font-size: $navigation-font-size;
+    text-transform: uppercase;
+    letter-spacing: $navigation-letter-spacing;
+    white-space: nowrap;
+    cursor: pointer;
+
+    margin-left: $global-content-padding-lg;
+
+    a.active {
+      font-weight: $font-medium;
+      color: $navigation-link-color-active;
+    }
+  }
+}
+
+// Content
+// -----------------
+.content-container {
+  @include flex-group; // group: sidebar, main content
+  flex: 1;
+  width: 100%;
+  max-width: $content-width;
+  margin: 0 auto;
+  padding: $global-content-spacing;
+}
+
+.content {
+  flex: 1;
+}
+
+.home-section {
+  text-align: center;
+
+  > header h2 {
+    font-size: 4em;
+  }
+}
+
+.ui-header {
+  @include clearfix();
+  padding-bottom: $global-content-padding-sm;
+  border-bottom: $global-border-style;
+
+  h2 {
+    font-size: 2em;
+  }
+
+  .ui-nav {
+    display: flex;
+    float: right;
+
+    button {
+      margin-left: $global-content-padding-sm;
+
+      &:not(:first-child):before {
+        content: '- ';
+      }
+    }
+  }
+}
+
+.ui-section {
+  padding: 0 0 $global-content-spacing;
+
+  & + & {
+    border-top: 1px solid $global-border-color;
+  }
+}
+
+.ui-example {
+  @include clearfix();
+  position: relative;
+  margin: $global-content-padding 0;
+  padding: $global-content-spacing;
+  border: 1px dashed $ui-example-border-color;
+
+  &:before {
+    content: 'Example';
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: $ui-example-border-color;
+    padding: 0.5em;
+    text-transform: uppercase;
+    font-size: $font-size-small;
+  }
+}
+
+// Sidebar
+// -----------------
+.app-sidebar {
+  flex: 0 20%;
+  border-right: $global-border-style;
+  padding-right: $global-content-spacing;
+  margin-right: $global-content-spacing;
+}
+
+.ui-category {
+  padding: 1em 0;
+
+  & + & {
+    border-top: $global-border-style;
+  }
+
+  header {
+    font-weight: $font-bold;
+    text-transform: uppercase;
+
+    a {
+      color: $text-color;
+      padding: $list-spacing;
+      position: relative;
+
+      &.active {
+        display: block;
+        width: 100%;
+        background: $med-grey;
+
+        &:after {
+          content: '';
+          display: inline-block;
+          background: url('/assets/images/component-library-logo.svg') no-repeat 0 -2px;
+          background-size: 40px;
+          width: 40px;
+          height: 100%;
+
+          @include anchor-element(0, 0, 0, auto);
+        }
+      }
+    }
+  }
+
+  ul {
+    padding: $list-spacing;
+  }
+
+  li {
+    margin: .5em 0;
+
+    a.active {
+      font-weight: $font-medium;
+    }
+  }
+}
+
+
+// Media Queries
+// --------------
+
+
+@media (max-width: $media-medium) {
+  .app-navigation {
+    padding-left: 1em;
+    position: relative;
+    height: 100%;
+    cursor: pointer;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.5em;
+      bottom: 0.5em;
+      width: 1.5em;
+      background: linear-gradient(
+        to bottom,
+        $mobile-nav-icon-color, $mobile-nav-icon-color 20%,
+        $header-bg-color 20%, $header-bg-color 40%,
+        $mobile-nav-icon-color 40%, $mobile-nav-icon-color 60%,
+        $header-bg-color 60%, $header-bg-color 80%,
+        $mobile-nav-icon-color 80%, $mobile-nav-icon-color 100%
+      );
+    }
+
+    &:hover ul {
+      display: block;
+    }
+  }
+
+  ul.secondary-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: -1em;
+    width: 50vw;
+    padding: $global-content-padding 0;
+    min-width: min-content;
+    background-color: $mobile-nav-bg-color;
+
+    > li {
+      margin: 0;
+
+      a {
+        display: block;
+        width: 100%;
+        padding: $global-content-padding $global-content-spacing;
+        color: $mobile-nav-link-color;
+
+        &:hover {
+          color: lighten($mobile-nav-link-color, 50%);
+        }
+      }
+    }
+  }
+}

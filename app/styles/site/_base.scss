@@ -1,0 +1,104 @@
+/* base.scss */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $feature-font-family;
+  margin: 1em 0;
+}
+
+h1,
+h2 {
+  font-size: $font-size-h1;
+}
+
+h3 {
+  font-size: $font-size-large;
+}
+
+p {
+  margin: $global-content-padding 0;
+  line-height: 1.2;
+}
+
+em {
+  font-style: italic;
+}
+
+img {
+  max-width: 100%;
+}
+
+// gotta be fancy
+a {
+  transition: color 0.1s ease-in;
+}
+
+hr {
+  background-color: $global-border-color;
+  height: 1px;
+  border: none;
+  margin: $global-content-spacing 0;
+}
+
+caption {
+  display: block;
+  text-align: left;
+  font-size: $font-size-small;
+  color: $grey;
+}
+
+pre {
+  white-space: pre-wrap;
+  word-break: inherit;
+  word-wrap: inherit;
+
+
+  &.code-block {
+    position: relative;
+    padding: $global-content-padding;
+    line-height: 1.2;
+    background-color: $codeblock-bg-color;
+    border: 1px solid $codeblock-border-color;
+    border-left: $codeblock-border-size solid $ui-example-border-color;
+
+    &::before {
+      content: 'Code';
+      position: absolute;
+      right: 0;
+      top: 0;
+      background: $codeblock-border-color;
+      padding: $global-content-padding-sm;
+      text-transform: uppercase;
+      font-size: $font-size-small;
+    }
+
+    code {
+      background-color: $codeblock-bg-color;
+    }
+  }
+}
+
+code {
+  background-color: $light-grey;
+  font-family: $font-family-monospace;
+
+  &.command-line {
+    background-color: $black;
+    color: $white;
+    display: block;
+    padding: $global-content-padding;
+  }
+}
+
+.default-list {
+  list-style: inherit;
+  margin: $global-content-padding;
+
+  li {
+    margin: $global-content-padding-xs 0;
+  }
+}

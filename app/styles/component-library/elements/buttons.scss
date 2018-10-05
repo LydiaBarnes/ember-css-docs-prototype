@@ -1,0 +1,164 @@
+/* buttons.scss */
+
+//
+// @name Button
+// @description The various buttons used by the demo component library.
+//
+
+// Variables
+// -----------------------------
+$button-padding-v:              $spacing-default;
+$button-padding-h:              $spacing-double;
+
+// Button Base Placeholder
+// -----------------------------
+%button {
+  // Our demo button should always be inline with text and other buttons
+  display: inline-block;
+  vertical-align: middle;
+  white-space: nowrap;
+  // <button> element, y u no pointer by default? :(
+  cursor: pointer;
+  user-select: none;
+
+  border-width: 1px;
+  border-style: solid;
+  padding: $button-padding-v $button-padding-h;
+
+  font-weight: $font-medium;
+  font-size: $font-size-regular;
+  line-height: 1;
+  border-radius: $global-border-radius;
+
+  transition: background-color 0.1s ease-in-out, border-color 0.1s ease-in-out;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+
+  &[disabled] {
+    opacity: $disabled-opacity;
+  }
+}
+
+// Reset Button Mixin
+// -----------------------------
+// Clears browser default button styling
+// Use on a button element that is not supposed to look like a traditional button
+@mixin reset-button() {
+  background: none;
+  border: none;
+  line-height: 1;
+}
+
+
+// -----------------------------
+
+// @section Button Types
+// @description We have several types of buttons for different use cases.
+//
+// @state .button-default - The most basic button to be used in most cases
+// @state .button-primary - Button to be used to indicate a primary action.
+// @state .button-danger  - Button to indicate a potentially dangerous action
+// @state .button-link    - A button styled as a regular text link. (Used semantically for actions instead of links)
+//
+// @markup
+//   <button class="button-default">Default</button>
+//   <button class="button-primary">Primary</button>
+//   <button class="button-danger">Danger</button>
+//   <p>Here is a <button class="button-link">button link</button> that blends in with content like a normal anchor tag.</p>
+//
+
+.button-default {
+  $bg-color: $light-grey;
+
+  @extend %button;
+  color: $text-color;
+  background-color: $bg-color;
+  border-color: $med-grey;
+
+  &:hover {
+    background-color: lighten($bg-color, 3%);
+  }
+}
+
+.button-primary {
+  $bg-color: $dark-grey;
+
+  @extend %button;
+  color: $white;
+  background-color: $bg-color;
+  border-color: $black;
+
+  &:hover {
+    background-color: lighten($bg-color, 10%);
+  }
+}
+
+.button-danger {
+  $bg-color: $error-red;
+
+  @extend %button;
+  color: $white;
+  background-color:$bg-color;
+  border-color: $error-red;
+
+  &:hover {
+    background-color: lighten($bg-color, 15%);
+  }
+}
+
+.button-link {
+  @extend a;
+  @include reset-button();
+  display: inline-block;
+  cursor: pointer;
+}
+
+
+// -----------------------------
+
+// @section Button Sizes
+// @description Different button sizes that can be applied to any type of button.
+//
+// @state .button-sm - small
+// @state .button-lg - large
+//
+// @markup
+//   <div class="button-default button-sm">Small</div>
+//   <div class="button-default">Default</div>
+//   <div class="button-default button-lg">Large</div>
+//
+
+.button-sm {
+  padding: $button-padding-v / 2 $button-padding-v / 2;
+  font-size: $font-size-small;
+}
+
+.button-lg {
+  padding: $button-padding-v * 2 $button-padding-v * 2;
+  font-size: $font-size-large;
+}
+
+
+// -----------------------------
+
+// @section Button Utilties
+// @description Sometimes we need extra states for the buttons.
+//
+// @state .button-dotted - Indicates a temporary button
+// @state .button-dashed - Indicates a temporary button
+//
+// @markup
+//   <div class="button-default button-dotted">Dotted</div>
+//   <div class="button-default button-dashed">Dashed</div>
+//
+
+.button-dotted {
+  border-style: dotted;
+}
+
+.button-dashed {
+  border-style: dashed;
+}
