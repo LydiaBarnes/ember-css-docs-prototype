@@ -6,6 +6,8 @@ Since then I've had to upgrade ember-cli, etc. because of a huge amount of npm v
 
 I used DSS for the comment parsing mechanism, which generates JSON. Ember Mirage, usually used for tests, hooks this up with Ember Data so it can generate the pages and demo blocks as needed. The goal was to automate as much of the site as possible through comments in the CSS files alone.
 
+![screenshot](screenshot.png)
+
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
